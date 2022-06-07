@@ -1,156 +1,149 @@
-// Defino la variable de tipo de café
-let coffeeType; 
+// Carrito de compras
 
-// Listado de cafés disponibles
-const coffees = [
-    {
-        id: "icedvanillalatte",
-        image: "../assets/img/product_3.png",
-        name: "Iced Vanilla Latte",
-        description: "Bebida a base de espresso y jarabe de vainilla con hielo.",
-        price: "$550"
+const cart = {
+    // Guardar
+    saveCart : () => {
+        localStorage.setItem("cart", JSON.stringify(cart.items));
     },
-    {
-        id: "carameltoffeelatte",
-        image: "../assets/img/product_2.png",
-        name: "Caramel Toffee Latte",
-        description: "Bebida a base de café, salsa de caramelo, toffee y canela.",
-        price: "$600"
 
-    },
-    {
-        id: "flatwhite",
-        image: "../assets/img/product_1.png",
-        name: "Flat White",
-        description: "Bebida a base de espresso que contiene leche cremada.",
-        price: "$610"
-    },
-    {
-        id: "capuccino",
-        image: "../assets/img/product_4.png",
-        name: "Capuccino",
-        description: "Bebida preparada con café espreso y leche montada con vapor.",
-        price: "$400"
-    }
-];
-
-// Listado de eventos
-const events = [
-    {
-        id: 1,
-        image: "../assets/img/events_4.jpg",
-        name: "Coffee Night",
-        description: "Vení a degustar lo mejor del café y conocer las sorpresas que tenemos para vos.",
-        date: "10 de Agosto 2022 - 21:00hs",
-        address: "Cuyo 1590, Martínez, Provincia de Buenos Aires"
-    },
-    {
-        id: 2,
-        image: "../assets/img/events_1.jpg",
-        name: "Beer & Friends",
-        description: "Noche de cerveza de gran variedad, en conjunto con las mejores hamburguesas para todos los gustos.",
-        date: "4 de Septiembre 2022 - 21:30hs",
-        address: "Cuyo 1590, Martínez, Provincia de Buenos Aires"
-    },
-    {
-        id: 3,
-        image: "../assets/img/events_2.jpg",
-        name: "Show Night",
-        description: "Junto a un espectáculo secreto que tenemos para vos, te ofrecemos platos de gran calidad, bebida de variedad y pasar un momento inolvidable.",
-        date: "17 de Septiembre 2022 - 22:00hs",
-        address: "Cuyo 1590, Martínez, Provincia de Buenos Aires"
-    },
-    {
-        id: 4,
-        image: "../assets/img/events_3.jpg",
-        name: "Wine & Dine",
-        description: "Te invitamos a probar los mejores vinos y platos gourmet que tenemos para vos.",
-        date: "6 de Octubre 2022 - 21:30hs",
-        address: "Cuyo 1590, Martínez, Provincia de Buenos Aires"
-    }
-];
-
-
-
-// Función para hacer la selección por prompts y alerts
-/*function selectOption() {
-    
-    let optionSelected = '';
-    
-    if(optionSelected !== 'Ninguna') {
-
-        optionSelected = prompt('Listado de acciones, escriba la que desea: \n\nListado de cafés\nComprar café\nListado de eventos\nNinguna');
-    
-        switch(optionSelected) {
-            case 'Listado de cafés':
-            {
-                listCoffee();
-                break;
-            }
-            case 'Comprar café': 
-            {
-                listCoffee();
-                coffeeType = prompt("Ingrese el nombre del café que quiera llevar");
-                coffeeQuantity = Number(prompt("¿Cuántos desea llevar?"));
-                totalCoffee(coffeeQuantity);
-                break;
-            }
-            case 'Listado de eventos':
-            {
-                listEvents();
-                break;
-            }
-            default:{
-                alert("¿No desea realizar ninguna acción? ¡Lo esperamos la próxima vez!");
-                break;
-            }
+    // Traer productos
+    loadCart : () => {
+        cart.items = localStorage.getItem("cart");
+        if (cart.items == null) { 
+            cart.items = {}; 
+        } else { 
+            cart.items = JSON.parse(cart.items); 
         }
-    }
-}*/
+    },
 
-// Función para comprar café
-/*function totalCoffee(quantity){
+    // Vaciar carrito
+    emptyCart : () => { 
+        cart.items = {};
+        localStorage.removeItem("cart");
+        cart.listCart();
+    },
 
-    const modalTienda = document.querySelector("#modal_tienda");
-    const modalTiendaTotal = document.querySelector("#tienda-total");
+    // Elementos y propiedades iniciales
+    items : {},
+    productImage : "../assets/img/",
+    cartElements : '', 
+    cartItems : '',
+    
+    // Inicializo
+    initShop : () => {
 
-    while (quantity != 0){
-        if (coffeeType == 'Iced Vanilla Latte') {
-            let coffeeTotal = quantity * 550;
-            modalTiendaTotal.innerHTML = "<b>Usted debe abonar:</b> $" + coffeeTotal;
-            break;
+        cart.cartElements = document.getElementById("cart-products");
+        cart.cartItems = document.getElementById("cart-items");
+        
+        if(cart.cartElements && cart.cartItems){
+        // Productos
+        cart.cartElements.innerHTML = "";
+        let template = document.getElementById("products").content, p, item, part;
+
+        for (let id in products) {
+            p = products[id];
+            item = template.cloneNode(true);
+            item.querySelector(".product-img").src = cart.productImage + p.img;
+            item.querySelector(".product-name").innerHTML = p.name;
+            item.querySelector(".product-description").innerHTML = p.description;
+            item.querySelector(".product-price").innerHTML = "$" + p.price;
+            item.querySelector(".product-add").onclick = () => { cart.add(id); };
+            cart.cartElements.appendChild(item);
         }
         
-        if (coffeeType == 'Caramel Toffee Latte') {
-            let coffeeTotal = quantity * 600;
-            modalTiendaTotal.innerHTML = "<b>Usted debe abonar:</b> $" + coffeeTotal;
-            break;
-        }
-    
-        if (coffeeType == 'Flat White') {
-            let coffeeTotal = quantity * 610;
-            modalTiendaTotal.innerHTML = "<b>Usted debe abonar:</b> $" + coffeeTotal;
-            break;
-        }
-
-        if (coffeeType == 'Capuccino') {
-            let coffeeTotal = quantity * 400;
-            modalTiendaTotal.innerHTML = "<b>Usted debe abonar:</b> $" + coffeeTotal;
-            break;
-        }
+        cart.loadCart();
+        cart.listCart();
     }
+    },
 
-    document.body.appendChild(modalTienda);
-    modalTienda.style.display = "block";
-}
-*/
+    // Listo los elementos del carrito
+    listCart : () => {
 
+        // Borrar
+        cart.cartItems.innerHTML = "";
+        let item, part, pdt, empty = true;
+        for (let key in cart.items) {
+            if (cart.items.hasOwnProperty(key)) { 
+                empty = false; break; 
+            }
+        }
 
-// Listado de cafés
-listCoffee();
+      // Carrito vacío - Carrito lleno
+        if (empty) {
+            item = document.getElementById("empty-cart");
+            item.style.display = "block";
+        } else {
+            item = document.getElementById("empty-cart");
+            item.style.display = "none";
+            let template = document.getElementById("cart").content, p, total = 0, subtotal = 0;
+            
+            for (let id in cart.items) {
+                p = products[id];
+                item = template.cloneNode(true);
+                item.querySelector(".delete-product").onclick = () => { cart.remove(id); };
+                item.querySelector(".product-name").textContent = p.name;
+                item.querySelector(".quantity-product").value = cart.items[id];
+                item.querySelector(".quantity-product").onchange = function () { cart.change(id, this.value); };
+                cart.cartItems.appendChild(item);
+            
+                // Subtotal
+                subtotal = cart.items[id] * p.price;
+                total += subtotal;
+            }
 
-// Listado de eventos
-listEvents();
+        // Total
+        item = document.createElement("div");
+        item.className = "total";
+        item.id = "total";
+        item.innerHTML ="TOTAL: $" + total;
+        cart.cartItems.appendChild(item);
 
-// Abrir carrito
+        // Vaciar carrito - checkout
+        item = document.getElementById("cart-checkout").content.cloneNode(true);
+        cart.cartItems.appendChild(item);
+        }
+    },
+
+    // Agregar producto al carrito
+    add : (id) => {
+        if (cart.items[id] == undefined) { 
+            cart.items[id] = 1; 
+        } else { 
+            cart.items[id]++; 
+        }
+        cart.saveCart(); 
+        cart.listCart();
+        openModal();
+    },
+
+    // Cambiar cantidad de productos
+    change : (productId, quantity) => {
+        if (quantity <= 0) {
+            delete cart.items[productId];
+            cart.saveCart(); cart.listCart();
+        } else {
+            // Actualizo el total
+            cart.items[productId] = quantity;
+            var total = 0;
+            for (let id in cart.items) {
+                total += cart.items[id] * products[id].price;
+                document.getElementById("total").innerHTML ="TOTAL: $" + total;
+            }
+        }
+    },
+
+    // Borrar producto del carrito
+    remove : (id) => {
+        delete cart.items[id];
+        cart.saveCart();
+        cart.listCart();
+    },
+
+    // Checkout
+    checkout : () => {
+        alert ("Checkout en progreso");
+    }
+};
+
+window.addEventListener("DOMContentLoaded", cart.initShop);
 openCart();

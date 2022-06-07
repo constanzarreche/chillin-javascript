@@ -48,13 +48,28 @@
                     </li>
                     <li class="nav-item" id="icon_cart">
                         <a class="nav-link" href="#"><img src="../assets/img/cart-icon.svg" alt="Carrito de compras"></a>
-                    </li>
-                    <li class="nav-item" id="icon_cart">
-                        <a class="nav-link" href="#"><img src="../assets/img/cart-icon.svg" alt="Carrito de compras"></a>
 
                         <div id="carrito_container">
-                            <img src="../assets/img/cart-icon.svg" alt="Carrito de compras">
-                            <h2>Agrega productos a tu carrito</h2>
+                            <div id="empty-cart">
+                                <img src="../assets/img/cart-icon.svg" alt="Carrito de compras">
+                                <h2>Agrega productos a tu carrito</h2>
+                            </div>
+                            
+                            <div id="cart-wrap">
+                                <div id="cart-items"></div>
+                            </div>
+
+                            <template id="cart">
+                                <div class="cart-item">
+                                    <p class="product-name"></p>
+                                    <input class="quantity-product" type="number" min="0"/>
+                                    <button class="delete-product cart">✖</button>
+                                </div>
+                            </template>
+                            <template id="cart-checkout">
+                                <button class="cart-empty cart" onclick="cart.emptyCart()">Vaciar carrito</button>
+                                <button class="cart-pay">Pagar</button>
+                            </template>
                         </div>
                     </li>
                 </ul>
@@ -68,7 +83,55 @@
             <h1 class="fadeIn text-center">Chillin´eventos</h1>
             <h2 class="fadeIn text-center">De la mano de Chillin´ te traemos los próximos eventos donde podrás asistir y pasar un buen momento.</h2>
                 
-            <article class="row" id="events-items">
+            <article class="row">
+                <div class="section__events-event row">
+                    <div class="section__events-event--image fadeInLeft col-lg-6">
+                        <img src="../assets/img/events_4.jpg" alt="Imágen del evento">
+                    </div>
+                    <div class="section__events-event--text fadeInRight col-lg-6">
+                        <h4>Coffee Night</h4>
+                        <h5>Vení a degustar lo mejor del café y conocer las sorpresas que tenemos para vos.</h5>
+                        <p><b>Día y horario:</b> 10 de Marzo 2022 - 21:00hs</p>
+                        <p><b>Dirección:</b> Cuyo 1590, Martínez, Provincia de Buenos Aires</p>
+                    </div>
+                </div> 
+                
+                <div class="section__events-event row">
+                    <div class="section__events-event--image fadeInLeft col-lg-6">
+                        <img src="../assets/img/events_1.jpg" alt="Imágen del evento">
+                    </div>
+    
+                    <div class="section__events-event--text fadeInRight col-lg-6">
+                        <h4>Beer & Friends</h4>
+                        <h5>Noche de cerveza de gran variedad, en conjunto con las mejores hamburguesas para todos los gustos.</h5>
+                        <p><b>Día y horario:</b> 4 de Abril 2022 - 21:30hs</p>
+                        <p><b>Dirección:</b> Cuyo 1590, Martínez, Provincia de Buenos Aires</p>
+                    </div>
+                </div>
+    
+                <div class="section__events-event row">
+                    <div class="section__events-event--image fadeInLeft col-lg-6">
+                        <img src="../assets/img/events_2.jpg" alt="Imágen del evento">
+                    </div>
+                    <div class="section__events-event--text fadeInRight col-lg-6">
+                        <h4>Show Night</h4>
+                        <h5>Junto a un espectáculo secreto que tenemos para vos, te ofrecemos platos de gran calidad, bebida de variedad y pasar un momento inolvidable</h5>
+                        <p><b>Día y horario:</b> 9 de Mayo 2022 - 22:00hs</p>
+                        <p><b>Dirección:</b> Cuyo 1590, Martínez, Provincia de Buenos Aires</p>
+                    </div>
+                </div>
+    
+                <div class="section__events-event row">
+                    <div class="section__events-event--image fadeInLeft col-lg-6">
+                        <img src="../assets/img/events_3.jpg" alt="Imágen del evento">
+                    </div>
+                    <div class="section__events-event--text fadeInRight col-lg-6">
+                        <h4>Wine & Dine</h4>
+                        <h5>Te invitamos a probar los mejores vinos y platos gourmet que tenemos para vos.</h5>
+                        <p><b>Día y horario:</b> 6 de Junio 2022 - 21:30hs</p>
+                        <p><b>Dirección:</b> Cuyo 1590, Martínez, Provincia de Buenos Aires</p>
+                    </div>
+                </div>
             </article>
         </div>        
     </section>
@@ -107,7 +170,8 @@
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
 
     <!-- Script Custom -->
-    <script defer src="../assets/js/view/functions.js"></script>
+    <script defer src="../assets/js/db/products.js"></script>
+    <script defer src="../assets/js/functions.js"></script>
     <script defer src="../assets/js/script.js"></script>
 
 </body>

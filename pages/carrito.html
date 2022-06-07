@@ -50,8 +50,26 @@
                         <a class="nav-link" href="#"><img src="../assets/img/cart-icon.svg" alt="Carrito de compras"></a>
 
                         <div id="carrito_container">
-                            <img src="../assets/img/cart-icon.svg" alt="Carrito de compras">
-                            <h2>Agrega productos a tu carrito</h2>
+                            <div id="empty-cart">
+                                <img src="../assets/img/cart-icon.svg" alt="Carrito de compras">
+                                <h2>Agrega productos a tu carrito</h2>
+                            </div>
+                            
+                            <div id="cart-wrap">
+                                <div id="cart-items"></div>
+                            </div>
+
+                            <template id="cart">
+                                <div class="cart-item">
+                                    <p class="product-name"></p>
+                                    <input class="quantity-product" type="number" min="0"/>
+                                    <button class="delete-product cart">✖</button>
+                                </div>
+                            </template>
+                            <template id="cart-checkout">
+                                <button class="cart-empty cart" onclick="cart.emptyCart()">Vaciar carrito</button>
+                                <button class="cart-pay">Pagar</button>
+                            </template>
                         </div>
                     </li>
                 </ul>
@@ -107,7 +125,8 @@
     <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
 
     <!-- Script Custom -->
-    <script defer src="../assets/js/view/functions.js"></script>
+    <script defer src="../assets/js/db/products.js"></script>
+    <script defer src="../assets/js/functions.js"></script>
     <script defer src="../assets/js/script.js"></script>
 </body>
 </html>
