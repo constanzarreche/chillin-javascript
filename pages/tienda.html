@@ -46,6 +46,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contacto.html">Contacto</a>
                     </li>
+                    <li class="nav-item" id="icon_cart">
+                        <a class="nav-link" href="#"><img src="../assets/img/cart-icon.svg" alt="Carrito de compras"></a>
+
+                        <div id="carrito_container">
+                            <img src="../assets/img/cart-icon.svg" alt="Carrito de compras">
+                            <h2>Agrega productos a tu carrito</h2>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -57,39 +65,26 @@
             <h1 class="fadeIn text-center">Chillin' tienda</h1>
             <h2 class="fadeIn text-center">¡Te llevamos el café más rico a la puerta de tu hogar! Conoce nuestra selección:</h2>
             <section class="tienda" id="tienda_spacing">
-                <article class="row fadeInUp section__favorites-products">
-                    <div class="section__favorites-products--item col-md-6 col-lg-3">
-                        <img src="../assets/img/product_1.png" alt="Imágen del producto">
-                        <h3>Flat White</h3>
-                        <p>Bebida a base de espresso que contiene leche cremada.</p>
-                        <span>$610</span>
-                        <a href="">Agregar al carrito</a>
-                    </div>
-                    <div class="section__favorites-products--item col-md-6 col-lg-3">
-                        <img src="../assets/img/product_2.png" alt="Imágen del producto">
-                        <h3>Caramel Toffee Latte</h3>
-                        <p>Bebida a base de café, salsa de caramelo, toffee y canela.</p>
-                        <span>$610</span>
-                        <a href="">Agregar al carrito</a>
-                    </div>
-                    <div class="section__favorites-products--item col-md-6 col-lg-3">
-                        <img src="../assets/img/product_3.png" alt="Imágen del producto">
-                        <h3>Iced Vanilla Latte</h3>
-                        <p>Bebida a base de espresso y jarabe de vainilla con hielo.</p>
-                        <span>$610</span>
-                        <a href="">Agregar al carrito</a>
-                    </div>
-                    <div class="section__favorites-products--item col-md-6 col-lg-3">
-                        <img src="../assets/img/product_4.png" alt="Imágen del producto">
-                        <h3>Capuccino</h3>
-                        <p>Bebida preparada con café espreso y leche montada con vapor.</p>
-                        <span>$610</span>
-                        <a href="">Agregar al carrito</a>
-                    </div>
+                <article class="row fadeInUp section__favorites-products" id="tienda-products">
                 </article>
             </section>
         </div>
     </section>
+
+    <div id="modal_tienda">
+        <div class="inside_modal">
+            <a href="" id="close_modal">✖</a>
+            <div class="modal_tienda_content">
+                <h2>¡Agregaste un producto!</h2>
+                <h3 id="product-name"></h3>
+                <h3 id="product-price"></h3>
+                <div>
+                    <a href="#" id="product-add-more">Agregar más</a>
+                    <a href="carrito.html" id="product-pay">Pagar</a>
+                </div>
+            </div>
+        </div>
+    </div>
     
     
     
@@ -124,9 +119,10 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
-    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
 
     <!-- Script Custom -->
-    <script src="assets/js/script.js"></script>
+    <script defer src="../assets/js/view/functions.js"></script>
+    <script defer src="../assets/js/script.js"></script>
 </body>
 </html>
