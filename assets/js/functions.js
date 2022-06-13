@@ -1,4 +1,4 @@
-function openModal() {
+/*function openModal() {
     const modalTienda = document.getElementById("modal_tienda");
     const modalProductName = document.getElementById("product-name");
     const modalProductTotal = document.getElementById("product-price");
@@ -20,7 +20,7 @@ function openModal() {
             modalTienda.style.display = "none";
         });
     }
-}
+}*/
 
 // Abrir carrito
 function openCart() {
@@ -41,3 +41,33 @@ function openCart() {
     });
 }
 
+// Modal compra
+function openModal()
+{
+    const btn = document.getElementById("btnSweet4");
+
+        Swal.fire({
+            title:'¡AGREGASTE UN PRODUCTO!',
+            color: '#2a352e',
+            fontWeight: 900,
+            icon: 'success',
+            confirmButtonText: 'SEGUIR COMPRANDO',
+            cancelButtonText: 'PAGAR',
+            showCancelButton: true,
+            buttonsStyling: false,
+        }).then((result)=>{
+            if(result.isConfirmed) {
+            }
+            else
+            {
+                Swal.fire({
+                    title:'Checkout en progreso',
+                    color: '#2a352e',
+                    fontWeight: 900,
+                    icon: 'info',
+                    confirmButtonText: 'Ok',
+                    buttonsStyling: false,
+                })
+            }
+        })
+}

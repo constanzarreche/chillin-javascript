@@ -46,7 +46,7 @@
                         <a class="nav-link" href="contacto.html">Contacto</a>
                     </li>
                     <li class="nav-item" id="icon_cart">
-                        <a class="nav-link" href="#"><img src="../assets/img/cart-icon.svg" alt="Carrito de compras"></a>
+                        <a class="nav-link" href="#"><img src="../assets/img/cart-icon.svg" alt="Carrito de compras"> <span id="counter"></span></a>
 
                         <div id="carrito_container">
                             <div id="empty-cart">
@@ -97,20 +97,6 @@
             </section>
         </div>
     </section>
-
-    <div id="modal_tienda">
-        <div class="inside_modal">
-            <a href="" id="close_modal">✖</a>
-            <div class="modal_tienda_content">
-                <h2>¡Agregaste un producto!</h2>
-                <div>
-                    <a href="#" id="product-add-more">Agregar más</a>
-                    <a href="carrito.html" id="product-pay">Pagar</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    
     
     
     <!-- Footer -->  
@@ -145,6 +131,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Script Custom -->
     <script defer src="../assets/js/db/products.js"></script>

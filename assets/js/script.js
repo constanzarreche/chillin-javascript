@@ -1,6 +1,8 @@
 // Carrito de compras
 
 const cart = {
+    //counter : document.querySelector('#counter'),
+    
     // Guardar
     saveCart : () => {
         localStorage.setItem("cart", JSON.stringify(cart.items));
@@ -12,7 +14,7 @@ const cart = {
         if (cart.items == null) { 
             cart.items = {}; 
         } else { 
-            cart.items = JSON.parse(cart.items); 
+            cart.items = JSON.parse(cart.items);
         }
     },
 
@@ -29,6 +31,7 @@ const cart = {
     cartElements : '', 
     cartItems : '',
     
+
     // Inicializo
     initShop : () => {
 
@@ -72,10 +75,11 @@ const cart = {
         if (empty) {
             item = document.getElementById("empty-cart");
             item.style.display = "block";
+            document.querySelector('#counter').textContent = 0;
         } else {
             item = document.getElementById("empty-cart");
             item.style.display = "none";
-            let template = document.getElementById("cart").content, p, total = 0, subtotal = 0;
+            let template = document.getElementById("cart").content, p, total = 0, subtotal = 0, counter = 0;
             
             for (let id in cart.items) {
                 p = products[id];
@@ -89,6 +93,9 @@ const cart = {
                 // Subtotal
                 subtotal = cart.items[id] * p.price;
                 total += subtotal;
+
+                // Counter
+                counter ++;
             }
 
         // Total
@@ -97,6 +104,9 @@ const cart = {
         item.id = "total";
         item.innerHTML ="TOTAL: $" + total;
         cart.cartItems.appendChild(item);
+
+        document.querySelector('#counter').textContent = counter;
+        
 
         // Vaciar carrito - checkout
         item = document.getElementById("cart-checkout").content.cloneNode(true);
@@ -109,7 +119,7 @@ const cart = {
         if (cart.items[id] == undefined) { 
             cart.items[id] = 1; 
         } else { 
-            cart.items[id]++; 
+            cart.items[id]++;
         }
         cart.saveCart(); 
         cart.listCart();
