@@ -1,7 +1,6 @@
 // Carrito de compras
 
 const cart = {
-    //counter : document.querySelector('#counter'),
     
     // Guardar
     saveCart : () => {
@@ -10,7 +9,7 @@ const cart = {
 
     // Traer productos
     loadCart : () => {
-        cart.items = localStorage.getItem("cart");
+       cart.items = localStorage.getItem("cart");
         if (cart.items == null) { 
             cart.items = {}; 
         } else { 
