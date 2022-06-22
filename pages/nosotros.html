@@ -68,7 +68,7 @@
                             </template>
                             <template id="cart-checkout">
                                 <button class="cart-empty cart" onclick="cart.emptyCart()">Vaciar carrito</button>
-                                <button class="cart-pay">Pagar</button>
+                                <button class="cart-pay" id="product-pay-cart" onclick="cartPay()">Pagar</button>
                             </template>
                         </div>
                     </li>
@@ -114,7 +114,59 @@
         </div>
     </section>
     
+    <div id="modal_tienda">
+        <div class="inside_modal">
+            <a href="" id="close_modal">✖</a>
+            <div class="modal_tienda_content">
+                <h2>Ingrese sus datos</h2>
+                <p>¡Realizamos el envío puntual!</p>
+                <form action="" id="formulario">
+                    <div class="form-group">
+                        <label for="">Nombre y apellido</label>
+                        <input type="text" required placeholder="Delfina Colman" maxlength = "100" name="nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Email</label>
+                        <input type="email" required placeholder="delfina@mail.com" maxlength = "50" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Teléfono</label>
+                        <input type="text" required placeholder="+54 911 xxxxxxxx" maxlength = "18" name="telefono">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Dirección</label>
+                        <input type="text" required placeholder="Avenida Libertador 1400 3C" maxlength = "100" name="direccion">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Método de pago</label>
+                        <div>
+                            <input type="radio" value="efectivo" name="metodo" required>
+                            <label for="efectivo">Efectivo</label>
+                        </div>
+                        <div>
+                            <input type="radio" value="transferencia" name="metodo" required>
+                            <label for="transferencia">Transferencia bancaria</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input id="product-pay" type="submit" value="Pagar"/>
+                    </div>
+                </form>
+                <div>
+                </div>
+            </div>
+        </div>
+    </div>
     
+    <div id="modal_confirm">
+        <div class="inside_modal">
+            <a href="" id="close_modal_confirm">✖</a>
+            <div class="modal_tienda_content">
+                <h2>¡Muchas gracias por tu compra!</h2>
+                <p>Ya estamos preparando tu pedido y pronto será entregado. Recibirás actualizaciones y datos de pago por email.</p>
+            </div>
+        </div>
+    </div>
     
     <!-- Footer -->  
     <footer>

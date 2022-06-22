@@ -1,6 +1,7 @@
 // Carrito de compras
 
 const cart = {
+    //counter : document.querySelector('#counter'),
     
     // Guardar
     saveCart : () => {
@@ -9,7 +10,7 @@ const cart = {
 
     // Traer productos
     loadCart : () => {
-       cart.items = localStorage.getItem("cart");
+        cart.items = localStorage.getItem("cart");
         if (cart.items == null) { 
             cart.items = {}; 
         } else { 
@@ -147,11 +148,6 @@ const cart = {
         cart.saveCart();
         cart.listCart();
     },
-
-    // Checkout
-    checkout : () => {
-        alert ("Checkout en progreso");
-    }
 };
 
 window.addEventListener("DOMContentLoaded", cart.initShop);
